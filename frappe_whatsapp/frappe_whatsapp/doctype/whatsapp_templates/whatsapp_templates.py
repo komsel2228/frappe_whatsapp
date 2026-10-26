@@ -59,7 +59,7 @@ class WhatsAppTemplates(Document):  # nosemgrep: frappe-modifying-but-not-commit
         }
 
         response = make_post_request(
-            f"{self._url}/{self._version}/{self._app_id}/uploads",
+            "{}/{}/{}/uploads".format(self._url, self._version, self._app_id),
             headers=self._headers,
             data=json.loads(json.dumps(payload))
         )
@@ -89,13 +89,13 @@ class WhatsAppTemplates(Document):  # nosemgrep: frappe-modifying-but-not-commit
                 'file_type': file_type
             }
         except Exception as e:
-            frappe.throw(f"Failed to download file from URL: {str(e)}")
+            frappe.throw("Failed to download file from URL: {}".format(str(e)))
 
     def get_media_id(self, file):
         self.get_settings()
 
         headers = {
-                "authorization": f"OAuth {self._token}"
+                "authorization": "OAuth {}".format(self._token)
             }
         
         # Check if it's a remote file, load data accordingly
@@ -107,7 +107,7 @@ class WhatsAppTemplates(Document):  # nosemgrep: frappe-modifying-but-not-commit
 
         payload = file_content
         response = make_post_request(
-            f"{self._url}/{self._version}/{self._session_id}",
+            "{}/{}/{}".format(self._url, self._version, self._session_id),
             headers=headers,
             data=payload
         )
@@ -176,7 +176,7 @@ class WhatsAppTemplates(Document):  # nosemgrep: frappe-modifying-but-not-commit
 
         try:
             response = make_post_request(
-                f"{self._url}/{self._version}/{self._business_id}/message_templates",
+                "{}/{}/{}/message_templates".format(self._url, self._version, self._business_id),
                 headers=self._headers,
                 data=json.dumps(data),
             )
@@ -235,7 +235,7 @@ class WhatsAppTemplates(Document):  # nosemgrep: frappe-modifying-but-not-commit
         try:
             # post template to meta for update
             make_post_request(
-                f"{self._url}/{self._version}/{self.id}",
+                "{}/{}/{}".format(self._url, self._version, self.id),
                 headers=self._headers,
                 data=json.dumps(data),
             )
@@ -260,13 +260,13 @@ class WhatsAppTemplates(Document):  # nosemgrep: frappe-modifying-but-not-commit
         self._app_id = settings.app_id  # nosemgrep: frappe-modifying-but-not-committing-other-method
 
         self._headers = {  # nosemgrep: frappe-modifying-but-not-committing-other-method
-            "authorization": f"Bearer {self._token}",
+            "authorization": "Bearer {}".format(self._token),
             "content-type": "application/json",
         }
 
     def on_trash(self):
         self.get_settings()
-        url = f"{self._url}/{self._version}/{self._business_id}/message_templates?name={self.actual_name}"
+        url = "{}/{}/{}/message_templates?name={}".format(self._url, self._version, self._business_id, self.actual_name)
         try:
             make_request("DELETE", url, headers=self._headers)
         except Exception:
@@ -294,7 +294,7 @@ class WhatsAppTemplates(Document):  # nosemgrep: frappe-modifying-but-not-commit
             if not self.sample:
                 key = frappe.get_doc(self.doctype, self.name).get_document_share_key()
                 link = get_pdf_link(self.doctype, self.name)
-                pdf_link = f"{frappe.utils.get_url()}{link}&key={key}"
+                pdf_link = "{}{}&key={}".format(frappe.utils.get_url(), link, key)
             header.update({"example": {"header_handle": [self._media_id]}})
 
         return header
@@ -312,12 +312,12 @@ def fetch():
         version = account.version
         business_id = account.business_id
 
-        headers = {"authorization": f"Bearer {token}", "content-type": "application/json"}
+        headers = {"authorization": "Bearer {}".format(token), "content-type": "application/json"}
 
         try:
             response = make_request(
                 "GET",
-                f"{url}/{version}/{business_id}/message_templates",
+                "{}/{}/{}/message_templates".format(url, version, business_id),
                 headers=headers,
             )
 
@@ -378,7 +378,7 @@ def fetch():
                         for i, button in enumerate(component.get("buttons", []), start=1):
                             btn_type_raw = button.get("type")
                             if btn_type_raw not in typeMap:
-                                frappe.log_error("WhatsApp Fetch Error", f"Unknown WhatsApp Button Type: {btn_type_raw}")
+                                frappe.log_error("Unknown WhatsApp Button Type: {}".format(btn_type_raw), "WhatsApp Fetch Error")
                                 continue
 
                             btn = {}
@@ -418,10 +418,10 @@ def fetch():
                     )
                 except (json.JSONDecodeError, KeyError):
                     # Handle cases where the response is not valid JSON or lacks the 'error' key
-                    frappe.throw(f"An unexpected error occurred while fetching templates: {e}")
+                    frappe.throw("An unexpected error occurred while fetching templates: {}".format(e))
             else:
                 # Handle cases where frappe.flags.integration_request doesn't exist or isn't a proper response object
-                frappe.throw(f"An unexpected server error occurred: {e}")
+                frappe.throw("An unexpected server error occurred: {}".format(e))
 
 def upsert_doc_without_hooks(doc, child_dt, child_field):
     """Insert or update a parent document and its children without hooks."""

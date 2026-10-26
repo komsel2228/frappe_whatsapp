@@ -66,7 +66,7 @@ class TestWhatsAppTemplates(IntegrationTestCase):
             "language_code": language_code,
             "whatsapp_account": kwargs.get("whatsapp_account", "Test WA Tmpl Account"),
             "status": kwargs.get("status", "APPROVED"),
-            "id": kwargs.get("id", f"tmpl_id_{template_name}"),
+            "id": kwargs.get("id", "tmpl_id_{}".format(template_name)),
             "header_type": kwargs.get("header_type", ""),
             "header": kwargs.get("header", ""),
             "footer": kwargs.get("footer", ""),

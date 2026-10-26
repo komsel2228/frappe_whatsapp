@@ -68,7 +68,7 @@ def _send_whatsapp_notification(notification_name, doctype, docname, commit=Fals
         if commit:
             frappe.db.rollback()
         frappe.log_error(
-            title=f"WhatsApp Notification failed: {notification_name}"
+            title="WhatsApp Notification failed: {}".format(notification_name)
         )
 
 

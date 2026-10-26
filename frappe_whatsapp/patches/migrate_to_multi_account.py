@@ -28,7 +28,7 @@ def execute():
     existing_account = frappe.db.exists("WhatsApp Account", {"phone_id": phone_id})
     if existing_account:
         account_name = existing_account
-        log.info(f"WhatsApp Account already exists for phone_id={phone_id}; reusing {account_name}")
+        log.info("WhatsApp Account already exists for phone_id={}; reusing {}".format(phone_id, account_name))
     else:
         # Token lives in __Auth, not tabSingles
         token = get_decrypted_password(
@@ -55,7 +55,7 @@ def execute():
         account.insert(ignore_permissions=True)
         set_encrypted_password("WhatsApp Account", account.name, token, "token")
         account_name = account.name
-        log.info(f"created WhatsApp Account {account_name}")
+        log.info("created WhatsApp Account {}".format(account_name))
 
     # Always run these so installs with a pre-existing account still get
     # WhatsApp Settings defaults and orphan templates fixed up.

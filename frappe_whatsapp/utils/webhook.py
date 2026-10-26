@@ -149,7 +149,7 @@ def post():
 					summary_parts = []
 					for key, value in flow_response.items():
 						if value:
-							summary_parts.append(f"{key}: {value}")
+							summary_parts.append("{}: {}".format(key, value))
 					summary_message = ", ".join(summary_parts) if summary_parts else "Flow completed"
 
 					msg_doc = frappe.get_doc({
@@ -194,7 +194,7 @@ def post():
 				}).insert(ignore_permissions=True)
 			elif message_type in ["image", "audio", "video", "document"]:
 				token = whatsapp_account.get_password("token")
-				url = f"{whatsapp_account.url}/{whatsapp_account.version}/"
+				url = "{}/{}/".format(whatsapp_account.url, whatsapp_account.version)
 
 				media_id = message[message_type]["id"]
 				headers = {
@@ -213,7 +213,7 @@ def post():
 					if media_response.status_code == 200:
 
 						file_data = media_response.content
-						file_name = f"{frappe.generate_hash(length=10)}.{file_extension}"
+						file_name = "{}.{}".format(frappe.generate_hash(length=10), file_extension)
 
 						message_doc = frappe.get_doc({
 							"doctype": "WhatsApp Message",

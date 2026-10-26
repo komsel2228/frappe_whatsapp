@@ -268,7 +268,7 @@ class TestBulkMessagingUtils(IntegrationTestCase):
         self.assertTrue(
             frappe.get_all(
                 "Error Log",
-                filters={"error": ["like", f"%{doc.name}%"]},
+                filters={"error": ["like", "%{}%".format(doc.name)]},
                 limit=1,
             ),
             "failure was swallowed without an Error Log entry",

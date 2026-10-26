@@ -33,7 +33,7 @@ def handle_flow_request():
 
         # Log the request for debugging
         frappe.log_error(
-            f"WhatsApp Flow Request:\n{json.dumps(data, indent=2)}",
+            "WhatsApp Flow Request:\n{}".format(json.dumps(data, indent=2)),
             "WhatsApp Flow Endpoint"
         )
 
@@ -69,7 +69,7 @@ def handle_flow_request():
         }
 
     except Exception as e:
-        frappe.log_error(f"Flow endpoint error: {str(e)}", "WhatsApp Flow Error")
+        frappe.log_error("Flow endpoint error: {}".format(str(e)), "WhatsApp Flow Error")
         return {
             "data": {
                 "error": str(e)
@@ -130,11 +130,11 @@ def save_flow_data(flow_token, screen, form_data):
         else:
             # If WhatsApp Flow Data doctype doesn't exist, just log
             frappe.log_error(
-                f"Flow Token: {flow_token}\nScreen: {screen}\nData: {json.dumps(form_data)}",
+                "Flow Token: {}\nScreen: {}\nData: {}".format(flow_token, screen, json.dumps(form_data)),
                 "WhatsApp Flow Data"
             )
     except Exception as e:
-        frappe.log_error(f"save_flow_data error: {str(e)}")
+        frappe.log_error("save_flow_data error: {}".format(str(e)))
 
 
 def verify_signature(payload, signature, app_secret):

@@ -190,7 +190,7 @@ class WhatsAppMessage(Document):
                 self.status = "Success"
             except Exception as e:
                 self.status = "Failed"
-                frappe.throw(f"Failed to send message {str(e)}")
+                frappe.throw("Failed to send message {}".format(str(e)))
         elif not self.message_id:
             self.send_template()
 
@@ -303,7 +303,7 @@ class WhatsAppMessage(Document):
                 })
                 has_mpm = True
             except Exception as e:
-                frappe.log_error(f"Failed to parse Product Catalog JSON: {str(e)}", "WhatsApp MPM Error")
+                frappe.log_error("Failed to parse Product Catalog JSON: {}".format(str(e)), "WhatsApp MPM Error")
 
         if template.buttons:
             # Only buttons with *runtime* parameters go into components.
@@ -347,12 +347,12 @@ class WhatsAppMessage(Document):
         token = whatsapp_account.get_password("token")
 
         headers = {
-            "authorization": f"Bearer {token}",
+            "authorization": "Bearer {}".format(token),
             "content-type": "application/json",
         }
         try:
             response = make_post_request(
-                f"{whatsapp_account.url}/{whatsapp_account.version}/{whatsapp_account.phone_id}/messages",
+                "{}/{}/{}/messages".format(whatsapp_account.url, whatsapp_account.version, whatsapp_account.phone_id),
                 headers=headers,
                 data=json.dumps(data),
             )
@@ -394,12 +394,13 @@ class WhatsAppMessage(Document):
         token = settings.get_password("token")
 
         headers = {
-            "authorization": f"Bearer {token}",
+            "authorization": "Bearer {}".format(token),
             "content-type": "application/json",
         }
+
         try:
             response = make_post_request(
-                f"{settings.url}/{settings.version}/{settings.phone_id}/messages",
+                "{}/{}/{}/messages".format(settings.url, settings.version, settings.phone_id),
                 headers=headers,
                 data=json.dumps(data),
             )
@@ -412,7 +413,7 @@ class WhatsAppMessage(Document):
         except Exception as e:
             res = frappe.flags.integration_request.json().get("error", {})
             error_message = res.get("Error", res.get("message"))
-            frappe.log_error("WhatsApp API Error", f"{error_message}\n{res}")
+            frappe.log_error("{}\n{}".format(error_message, res), "WhatsApp API Error")
 
 
 def on_doctype_update():

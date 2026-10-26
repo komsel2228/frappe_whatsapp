@@ -261,13 +261,13 @@ class WhatsAppNotification(Document):
         token = whatsapp_account.get_password("token")
 
         headers = {
-            "authorization": f"Bearer {token}",
+            "authorization": "Bearer {}".format(token),
             "content-type": "application/json"
         }
         try:
             success = False
             response = make_post_request(
-                f"{whatsapp_account.url}/{whatsapp_account.version}/{whatsapp_account.phone_id}/messages",
+                "{}/{}/{}/messages".format(whatsapp_account.url, whatsapp_account.version, whatsapp_account.phone_id),
                 headers=headers, data=json.dumps(data)
             )
 
@@ -324,7 +324,7 @@ class WhatsAppNotification(Document):
                     error_message = response.get('Error', response.get("message"))
 
             frappe.msgprint(
-                f"Failed to trigger whatsapp message: {error_message}",
+                "Failed to trigger whatsapp message: {}".format(error_message),
                 indicator="red",
                 alert=True
             )
