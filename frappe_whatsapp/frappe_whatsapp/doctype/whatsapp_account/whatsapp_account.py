@@ -6,9 +6,29 @@ from frappe import _
 # from frappe.integrations.utils import make_post_request
 from frappe_whatsapp.utils.http import make_post_request, make_request
 from frappe.model.document import Document
+from frappe_whatsapp.utils.token_crypto import decrypt_secret, encrypt_secret, is_encrypted
 
 
 class WhatsAppAccount(Document):
+	def validate(self):
+		self.encrypt_token()
+
+	def encrypt_token(self):
+		"""Keep the access token encrypted at rest (v12 Password limit is 127 chars)."""
+		token = self.get("token")
+		if not token or self.is_dummy_password(token) or is_encrypted(token):
+			return
+		self.token = encrypt_secret(token)
+
+	def get_password(self, fieldname="password", raise_exception=True):
+		"""Return the decrypted token; other fields use Frappe's default behaviour."""
+		if fieldname == "token":
+			token = self.get("token")
+			if token and not self.is_dummy_password(token):
+				return decrypt_secret(token)
+			# old records saved when token was a Password field live in __Auth
+		return super(WhatsAppAccount, self).get_password(fieldname, raise_exception=raise_exception)
+
 	def on_update(self):
 		"""Check there is only one default of each type."""
 		self.there_must_be_only_one_default()

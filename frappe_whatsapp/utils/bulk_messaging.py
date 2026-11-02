@@ -33,15 +33,29 @@ def import_recipients(list_name, doctype, mobile_field, name_field=None, filters
 
 def process_scheduled_bulk_messages():
     """Check for scheduled bulk messages whose time has arrived and queue them."""
-    scheduled = frappe.get_all(
-        "Bulk WhatsApp Message",
-        filters={
-            "status": "Scheduled",
-            "docstatus": 1,
-            "scheduled_time": ["<=", now()],
-        },
-        pluck="name",
-    )
+    # scheduled = frappe.get_all(
+    #     "Bulk WhatsApp Message",
+    #     filters={
+    #         "status": "Scheduled",
+    #         "docstatus": 1,
+    #         "scheduled_time": ["<=", now()],
+    #     },
+    #     pluck="name",
+    # )
+    
+    scheduled = [
+        row[0]
+        for row in frappe.get_all(
+            "Bulk WhatsApp Message",
+            fields=["name"],
+            filters={
+                "status": "Scheduled",
+                "docstatus": 1,
+                "scheduled_time": ["<=", now()],
+            },
+            as_list=True,
+        )
+    ]
 
     for name in scheduled:
         # Claim the campaign before enqueuing anything. queue_messages() calls
