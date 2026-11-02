@@ -3,7 +3,8 @@
 
 import frappe
 from frappe import _
-from frappe.integrations.utils import make_post_request
+# from frappe.integrations.utils import make_post_request
+from frappe_whatsapp.utils.http import make_post_request, make_request
 from frappe.model.document import Document
 
 

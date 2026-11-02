@@ -7,7 +7,8 @@ import frappe
 import magic
 import requests
 from frappe.model.document import Document
-from frappe.integrations.utils import make_post_request, make_request
+# from frappe.integrations.utils import make_post_request, make_request
+from frappe_whatsapp.utils.http import make_post_request, make_request
 from frappe.desk.form.utils import get_pdf_link
 
 from frappe_whatsapp.utils import get_whatsapp_account

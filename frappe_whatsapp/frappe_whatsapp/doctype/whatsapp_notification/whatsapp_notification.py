@@ -6,7 +6,8 @@ import frappe
 from frappe import _dict, _
 from frappe.model.document import Document
 from frappe.utils.safe_exec import get_safe_globals, safe_exec
-from frappe.integrations.utils import make_post_request
+# from frappe.integrations.utils import make_post_request
+from frappe_whatsapp.utils.http import make_post_request, make_request
 from frappe.desk.form.utils import get_pdf_link
 from frappe.utils import add_to_date, nowdate, datetime
 
