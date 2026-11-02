@@ -1,5 +1,4 @@
 {
- "actions": [],
  "allow_rename": 1,
  "creation": "2022-10-28 12:54:40.223422",
  "doctype": "DocType",
@@ -17,13 +16,11 @@
   },
   {
    "fieldname": "meta_data",
-   "fieldtype": "JSON",
+   "fieldtype": "Code",
    "label": "Meta Data"
   }
  ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2022-10-28 12:59:40.511539",
+ "modified": "2026-11-02 18:50:12.705447",
  "modified_by": "Administrator",
  "module": "Frappe Whatsapp",
  "name": "WhatsApp Notification Log",
@@ -41,6 +38,5 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
  "title_field": "template"
 }

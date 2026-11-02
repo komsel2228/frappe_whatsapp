@@ -1,9 +1,7 @@
 {
- "actions": [],
  "allow_rename": 1,
  "autoname": "field:account_name",
  "creation": "2025-05-26 17:33:44.556320",
- "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -25,7 +23,7 @@
  "fields": [
   {
    "fieldname": "token",
-   "fieldtype": "Password",
+   "fieldtype": "Small Text",
    "label": "Token",
    "length": 300
   },
@@ -102,14 +100,10 @@
    "label": "Allow auto read receipt"
   }
  ],
- "grid_page_length": 50,
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-12-01 18:30:21.339317",
+ "modified": "2026-11-02 18:50:38.246840",
  "modified_by": "Administrator",
  "module": "Frappe Whatsapp",
  "name": "WhatsApp Account",
- "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -123,8 +117,6 @@
    "write": 1
   }
  ],
- "row_format": "Dynamic",
  "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+ "sort_order": "DESC"
 }
