@@ -244,9 +244,11 @@ class WhatsAppMessage(Document):
         if template.header_type:
             if self.attach:
                 if self.attach.startswith("http"):
-                    url = f'{self.attach}'
+                    url = "{}".format(self.attach)
+                    # url = f'{self.attach}'
                 else:
-                    url = f'{frappe.utils.get_url()}{self.attach}'
+                    url = "{}{}".format(frappe.utils.get_url(), self.attach)
+                    # url = f'{frappe.utils.get_url()}{self.attach}'
                 if template.header_type == 'IMAGE':
                     data['template']['components'].append({
                         "type": "header",
@@ -273,9 +275,11 @@ class WhatsAppMessage(Document):
             elif template.sample:
                 if template.header_type == 'IMAGE':
                     if template.sample.startswith("http"):
-                        url = f'{template.sample}'
+                        url = "{}".format(template.sample)
+                        # url = f'{template.sample}'
                     else:
-                        url = f'{frappe.utils.get_url()}{template.sample}'
+                        url = "{}{}".format(frappe.utils.get_url(), template.sample)
+                        # url = f'{frappe.utils.get_url()}{template.sample}'
                     data['template']['components'].append({
                         "type": "header",
                         "parameters": [{

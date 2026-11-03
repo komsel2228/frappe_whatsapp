@@ -167,8 +167,10 @@ class WhatsAppNotification(Document):
                     print_format=print_format
                 )
 
-                filename = f'{doc_data["name"]}.pdf'
-                url = f'{frappe.utils.get_url()}{link}&key={key}'
+                # filename = f'{doc_data["name"]}.pdf'
+                filename = '{}.pdf'.format(doc_data["name"])
+                url = '{}{}&key={}'.format(frappe.utils.get_url(), link, key)
+                # url = f'{frappe.utils.get_url()}{link}&key={key}'
 
             elif self.custom_attachment:
                 filename = self.file_name
@@ -178,14 +180,17 @@ class WhatsAppNotification(Document):
                     if not file_url.startswith("http"):
                         # get share key so that private files can be sent
                         key = doc.get_document_share_key()
-                        file_url = f'{frappe.utils.get_url()}{file_url}&key={key}'
+                        file_url = '{}{}&key={}'.format(frappe.utils.get_url(), file_url, key)
+                        # file_url = f'{frappe.utils.get_url()}{file_url}&key={key}'
                 else:
                     file_url = self.attach
 
                 if file_url.startswith("http"):
-                    url = f'{file_url}'
+                    url = '{}'.format(file_url)
+                    # url = f'{file_url}'
                 else:
-                    url = f'{frappe.utils.get_url()}{file_url}'
+                    url = '{}{}'.format(frappe.utils.get_url(), file_url)
+                    # url = f'{frappe.utils.get_url()}{file_url}'
 
             if template.header_type == 'DOCUMENT':
                 data['template']['components'].append({

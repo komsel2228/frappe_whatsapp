@@ -201,7 +201,8 @@ def post():
 					'Authorization': 'Bearer ' + token
 
 				}
-				response = requests.get(f'{url}{media_id}/', headers=headers)
+				response = requests.get('{}{}/'.format(url, media_id), headers=headers)
+				# response = requests.get(f'{url}{media_id}/', headers=headers)
 
 				if response.status_code == 200:
 					media_data = response.json()

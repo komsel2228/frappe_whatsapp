@@ -64,9 +64,10 @@ class WhatsAppAccount(Document):
 		if not token:
 			frappe.throw(_("Access token is required to subscribe the app"))
 
-		endpoint = f"{self.url}/{self.version}/{self.business_id}/subscribed_apps"
+		# endpoint = f"{self.url}/{self.version}/{self.business_id}/subscribed_apps"
+		endpoint = "{}/{}/{}/subscribed_apps".format(self.url, self.version, self.business_id)
 		headers = {
-			"authorization": f"Bearer {token}",
+			"authorization": "Bearer {}".format(token),
 			"content-type": "application/json",
 		}
 
@@ -84,6 +85,6 @@ class WhatsAppAccount(Document):
 			frappe.throw(_("Subscription was not successful: {0}").format(frappe.as_json(response)))
 
 		frappe.logger().info(
-			f"WhatsApp app subscribed to webhooks for business_id={self.business_id}"
+			"WhatsApp app subscribed to webhooks for business_id={}".format(self.business_id)
 		)
 		return response

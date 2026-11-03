@@ -91,7 +91,8 @@ class BulkWhatsAppMessage(Document):
                 # for var_name, var_value in variables.items():
                 #     message_content = message_content.replace(f"{{{{{var_name}}}}}", str(var_value))
             except Exception as e:
-                frappe.log_error(f"Error parsing recipient data: {str(e)}", "WhatsApp Bulk Messaging")
+                frappe.log_error("Error parsing recipient data: {}".format(str(e)), "WhatsApp Bulk Messaging")
+                # frappe.log_error(f"Error parsing recipient data: {str(e)}", "WhatsApp Bulk Messaging")
         
         # Create WhatsApp message
         wa_message = frappe.new_doc("WhatsApp Message")
@@ -178,7 +179,7 @@ class BulkWhatsAppMessage(Document):
             message_doc.status = "Failed"
             message_doc.db_update()
             frappe.log_error(
-                title=f"WhatsApp bulk retry failed: {message_doc.name}"
+                title="WhatsApp bulk retry failed: {}".format(message_doc.name)
             )
         
     def get_progress(self):
