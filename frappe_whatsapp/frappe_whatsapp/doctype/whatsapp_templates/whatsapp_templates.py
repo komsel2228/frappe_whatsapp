@@ -18,7 +18,8 @@ class WhatsAppTemplates(Document):  # nosemgrep: frappe-modifying-but-not-commit
 
     def validate(self):
         self.set_whatsapp_account()
-        if not self.language_code or self.has_value_changed("language"):
+        if (not self.language_code):
+        # if not self.language_code or self.has_value_changed("language"):
             lang_code = frappe.db.get_value("Language", self.language) or "en"
             self.language_code = lang_code.replace("-", "_")
 
