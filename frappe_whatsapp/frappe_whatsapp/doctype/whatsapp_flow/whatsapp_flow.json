@@ -1,8 +1,7 @@
 {
- "actions": [],
  "allow_rename": 1,
  "autoname": "format:{flow_name}",
- "creation": "2025-01-09 10:00:00.000000",
+ "creation": "2025-01-09 10:00:00",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -162,13 +161,12 @@
    "read_only": 1
   }
  ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-01-09 10:00:00.000000",
+ "hide_toolbar": 1,
+ "in_create": 1,
+ "modified": "2026-11-05 07:38:42.634287",
  "modified_by": "Administrator",
  "module": "Frappe Whatsapp",
  "name": "WhatsApp Flow",
- "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -184,8 +182,8 @@
    "write": 1
   }
  ],
+ "read_only": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
  "track_changes": 1
 }

@@ -1,5 +1,4 @@
 {
- "actions": [],
  "beta": 1,
  "creation": "2023-05-10 12:00:00",
  "doctype": "DocType",
@@ -187,8 +186,7 @@
    "description": "A comma-separated list of Content IDs (also known as Retailer IDs) from your Meta Catalog. 7jz1ottjd2, oidpztf4vp etc.",
    "fieldname": "product_ids",
    "fieldtype": "Code",
-   "label": "Product IDs",
-   "mandatory_depends_on": "eval:doc.is_mpm==1"
+   "label": "Product IDs"
   },
   {
    "fieldname": "column_break_fpdx",
@@ -206,14 +204,13 @@
    "description": "Provide any of your products id to use its image.",
    "fieldname": "thumbnail_product_retailer_id",
    "fieldtype": "Data",
-   "label": "Thumbnail Product",
-   "mandatory_depends_on": "eval:doc.is_mpm==1"
+   "label": "Thumbnail Product"
   }
  ],
- "index_web_pages_for_search": 1,
+ "hide_toolbar": 1,
+ "in_create": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2026-02-11 01:17:05.293810",
+ "modified": "2026-11-05 07:37:53.587197",
  "modified_by": "Administrator",
  "module": "Frappe Whatsapp",
  "name": "Bulk WhatsApp Message",
@@ -249,8 +246,7 @@
    "write": 1
   }
  ],
- "row_format": "Dynamic",
+ "read_only": 1,
  "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+ "sort_order": "DESC"
 }

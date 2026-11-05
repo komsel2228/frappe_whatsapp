@@ -1,5 +1,4 @@
 {
- "actions": [],
  "autoname": "field:list_name",
  "creation": "2023-05-10 12:00:00",
  "doctype": "DocType",
@@ -108,13 +107,12 @@
    "options": "JSON"
   }
  ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-03-03 12:41:13.610865",
+ "hide_toolbar": 1,
+ "in_create": 1,
+ "modified": "2026-11-05 07:38:28.525804",
  "modified_by": "Administrator",
  "module": "Frappe Whatsapp",
  "name": "WhatsApp Recipient List",
- "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -142,7 +140,7 @@
    "write": 1
   }
  ],
+ "read_only": 1,
  "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+ "sort_order": "DESC"
 }

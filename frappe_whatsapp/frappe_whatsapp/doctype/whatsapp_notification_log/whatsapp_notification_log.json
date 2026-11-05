@@ -20,7 +20,8 @@
    "label": "Meta Data"
   }
  ],
- "modified": "2026-11-02 18:50:12.705447",
+ "in_create": 1,
+ "modified": "2026-11-05 07:47:00.501892",
  "modified_by": "Administrator",
  "module": "Frappe Whatsapp",
  "name": "WhatsApp Notification Log",

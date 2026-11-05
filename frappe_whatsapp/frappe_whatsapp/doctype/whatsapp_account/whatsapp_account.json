@@ -85,6 +85,7 @@
    "default": "0",
    "fieldname": "is_default_incoming",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Is Default Incoming"
   },
   {
@@ -94,13 +95,14 @@
    "label": "Is Default Outgoing"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "allow_auto_read_receipt",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Allow auto read receipt"
   }
  ],
- "modified": "2026-11-02 18:50:38.246840",
+ "modified": "2026-11-05 07:44:15.706671",
  "modified_by": "Administrator",
  "module": "Frappe Whatsapp",
  "name": "WhatsApp Account",
