@@ -114,37 +114,37 @@ app_license = "MIT"
 # Scheduled Tasks
 # ---------------
 
-scheduler_events = {
-    "all": [
-        "frappe_whatsapp.utils.trigger_whatsapp_notifications_all",
-        "frappe_whatsapp.utils.bulk_messaging.process_scheduled_bulk_messages"
-    ],
-    "hourly": [
-        "frappe_whatsapp.utils.trigger_whatsapp_notifications_hourly"
-    ],
-    "hourly_long": [
-        "frappe_whatsapp.utils.trigger_whatsapp_notifications_hourly_long"
-    ],
-    "daily": [
-        "frappe_whatsapp.utils.trigger_whatsapp_notifications_daily",
-        "frappe_whatsapp.frappe_whatsapp.doctype.whatsapp_notification.whatsapp_notification.trigger_notifications",
-    ],
-    "daily_long": [
-        "frappe_whatsapp.utils.trigger_whatsapp_notifications_daily_long",
-    ],
-    "weekly": [
-        "frappe_whatsapp.utils.trigger_whatsapp_notifications_weekly",
-    ],
-    "weekly_long": [
-        "frappe_whatsapp.utils.trigger_whatsapp_notifications_weekly_long",
-    ],
-    "monthly": [
-        "frappe_whatsapp.utils.trigger_whatsapp_notifications_monthly",
-    ],
-    "monthly_long": [
-        "frappe_whatsapp.utils.trigger_whatsapp_notifications_monthly_long",
-    ],
-}
+# scheduler_events = {
+#     "all": [
+#         "frappe_whatsapp.utils.trigger_whatsapp_notifications_all",
+#         "frappe_whatsapp.utils.bulk_messaging.process_scheduled_bulk_messages"
+#     ],
+#     "hourly": [
+#         "frappe_whatsapp.utils.trigger_whatsapp_notifications_hourly"
+#     ],
+#     "hourly_long": [
+#         "frappe_whatsapp.utils.trigger_whatsapp_notifications_hourly_long"
+#     ],
+#     "daily": [
+#         "frappe_whatsapp.utils.trigger_whatsapp_notifications_daily",
+#         "frappe_whatsapp.frappe_whatsapp.doctype.whatsapp_notification.whatsapp_notification.trigger_notifications",
+#     ],
+#     "daily_long": [
+#         "frappe_whatsapp.utils.trigger_whatsapp_notifications_daily_long",
+#     ],
+#     "weekly": [
+#         "frappe_whatsapp.utils.trigger_whatsapp_notifications_weekly",
+#     ],
+#     "weekly_long": [
+#         "frappe_whatsapp.utils.trigger_whatsapp_notifications_weekly_long",
+#     ],
+#     "monthly": [
+#         "frappe_whatsapp.utils.trigger_whatsapp_notifications_monthly",
+#     ],
+#     "monthly_long": [
+#         "frappe_whatsapp.utils.trigger_whatsapp_notifications_monthly_long",
+#     ],
+# }
 
 # Testing
 # -------
