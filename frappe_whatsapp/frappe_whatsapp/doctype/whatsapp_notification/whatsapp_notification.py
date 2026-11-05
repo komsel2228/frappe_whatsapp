@@ -342,7 +342,7 @@ class WhatsAppNotification(Document):
             frappe.get_doc({
                 "doctype": "WhatsApp Notification Log",
                 "template": self.template,
-                "meta_data": meta
+                "meta_data": json.dumps(meta)
             }).insert(ignore_permissions=True)
 
 

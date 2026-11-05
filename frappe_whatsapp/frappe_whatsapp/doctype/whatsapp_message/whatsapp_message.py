@@ -370,7 +370,8 @@ class WhatsAppMessage(Document):
                 {
                     "doctype": "WhatsApp Notification Log",
                     "template": "Text Message",
-                    "meta_data": frappe.flags.integration_request.json(),
+                    "meta_data": json.dumps(frappe.flags.integration_request.json()),
+                    # "meta_data": frappe.flags.integration_request.json(),
                 }
             ).insert(ignore_permissions=True)
 
